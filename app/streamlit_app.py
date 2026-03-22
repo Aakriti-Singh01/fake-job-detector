@@ -236,13 +236,13 @@ if st.button("🔍 Detect Fraud"):
 
         shap_df = pd.DataFrame(top_features, columns=["Feature", "Impact"])
 
-        shap_df[" Type"] = shap_df["Impact"].apply(
-            lambda x: "Fraud Signal 🚨" if x > 0 else "Legit Signal ✅"
+        shap_df["Type"] = shap_df["Impact"].apply(
+              lambda x: "Fraud Signal 🚨" if x > 0 else "Legit Signal ✅"
         )
 
         st.dataframe(
             shap_df.style
-            .background_gradient("Impact", cmap="RdYlGn_r")
+            .background_gradient(subset=["Impact"], cmap="RdYlGn_r")
             .format({"Impact": "{:.3f}"})
         )
 
