@@ -96,7 +96,11 @@ Unlike basic classifiers, this system:
 * 🚨 Fraudulent Job
 * 📊 Feature Impact Chart
 * 🔎 Key  Drivers
-<img width="913" height="841" alt="image" src="https://github.com/user-attachments/assets/6f01fe56-31fe-451c-8294-b5afa3bafd83" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/6f01fe56-31fe-451c-8294-b5afa3bafd83" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/d69334f5-e1bf-4c37-9248-5747ad82d8e7" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/9c32c576-ab65-4db1-b07e-fc703eb549de" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/5710aebe-5e60-4854-b94c-3020475db270" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/4325537c-1812-4187-9ed0-b2f01855930a" />
 
 ---
 
