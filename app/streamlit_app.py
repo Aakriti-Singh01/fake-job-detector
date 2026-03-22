@@ -229,27 +229,42 @@ if st.button("🔍 Detect Fraud"):
         for r in reasons:
             st.markdown(f"- {r}")
 
+        
         # -------- SHAP -------- #
-        st.subheader("🔍 Model Explanation")
+    st.subheader("🔍 Model Explanation")
 
-        top_features = get_shap_explanation(model, X_final, feature_names)
+    top_features = get_shap_explanation(model, X_final, feature_names)
 
-        shap_df = pd.DataFrame(top_features, columns=["Feature", "Impact"])
+    shap_df = pd.DataFrame(top_features, columns=["Feature", "Impact"])
 
-        shap_df["Type"] = shap_df["Impact"].apply(
-              lambda x: "Fraud Signal 🚨" if x > 0 else "Legit Signal ✅"
-        )
+            # Add label
+    shap_df["Type"] = shap_df["Impact"].apply(
+         lambda x: "🚨 Fraud Signal" if x > 0 else "✅ Legit Signal"
+    )
 
-        st.dataframe(
-            shap_df.style
-            .background_gradient(subset=["Impact"], cmap="RdYlGn_r")
-            .format({"Impact": "{:.3f}"})
-        )
+       # Sort by impact (important for UX)
+    shap_df = shap_df.sort_values(by="Impact", key=abs, ascending=False)
+
+        # -------- 📊 Chart View -------- #
+    st.markdown("### 📊 Feature Impact Overview")
+    st.bar_chart(shap_df.set_index("Feature")["Impact"])
+
+          # -------- 📋 Table View -------- #
+    st.markdown("### 📋 Detailed Breakdown")
+    st.dataframe(
+    shap_df.style.format({"Impact": "{:.3f}"})  # only formatting, no gradient
+   )
+
+     # -------- 🔍 Insight Cards -------- #
+    st.markdown("### 🔎 Key Signals")
+
+    for _, row in shap_df.head(5).iterrows():
+       st.write(f"**{row['Feature']}** → {row['Type']} (Impact: {row['Impact']:.3f})")
 
         # -------- TOP DRIVERS -------- #
-        st.subheader("🚀 Key Drivers")
+    st.subheader("🚀 Key Drivers")
 
-        for name, value in top_features[:3]:
+    for name, value in top_features[:3]:
             if value > 0:
                 st.markdown(f"🔴 **{name}** indicates fraud (+{value:.3f})")
             else:
